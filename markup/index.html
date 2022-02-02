@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/markup/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script></script>
+    <title>js-таблица</title>
+</head>
+<body>
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Имя</p> <button class="sort__button"> < > </button></div></th>
+                <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Фамилия</p> <button class="sort__button"> < > </button></div></th>
+                <th class="table__td table__td--header table__td--about"><div class="th-wrapper"><p class="table__text table__text--header">Описание</p> <button class="sort__button"> < > </button></div></th>
+                <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Цвет глаз </p><button class="sort__button"> < > </button></div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--blue"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--green"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--red"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--green"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--blue"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--red"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--brown"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--blue"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--green"></div></td>
+            </tr>
+            <tr>
+                <td class="table__td"><p class="table__text">Brooks</p></td>
+                <td class="table__td"><p class="table__text">Stone</p></td>
+                <td class="table__td"><p class="table__text">Qui aliquip esse occaecat voluptate cillum laborum do adipisicing ea. </p></td>
+                <td class="table__td"><div class="eye-color eye-color--brown"></div></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="edit-field-wrapper">
+        <form class="edit-field-form" action="#" method="post">
+            <ul class="edit-field-form__list">
+                <li class="edit-field-form__item">
+                    <label for="name">Имя</label>
+                    <input class="edit-field-form__input" type="text" id="name" name="user-name">
+                </li>
+                <li class="edit-field-form__item">
+                    <label for="lastname">Фамилия</label>
+                    <input class="edit-field-form__input" type="text" id="lastname" name="user-lastname">
+                </li>
+                <li class="edit-field-form__item">
+                    <p>Цвет глаз</p>
+                    <ul class="edit-field-form__color-list">
+                        <li class="edit-field-form__color-item">
+                            <label class="eye-color eye-color--red edit-field-form__color-label" for="eye-color-red"></label>
+                            <input type="radio" id="eye-color-red" name="user-color-red">
+                        </li>
+                        <li class="edit-field-form__color-item">
+                            <label class="eye-color eye-color--blue edit-field-form__color-label" for="eye-color-blue"></label>
+                            <input type="radio" id="eye-color-blue" name="user-color-blue">
+                        </li>
+                        <li class="edit-field-form__color-item">
+                            <label class="eye-color eye-color--brown edit-field-form__color-label" for="eye-color-brown"></label>
+                            <input type="radio" id="eye-color-brown" name="user-color-brown">
+                        </li>
+                        <li class="edit-field-form__color-item">
+                            <label class="eye-color eye-color--green edit-field-form__color-label" for="eye-color-green"></label>
+                            <input type="radio" id="eye-color-green" name="user-color-green">
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <textarea class="edit-field" placeholder="Описание"></textarea>
+            <button type="submit" class="button"><p class="button__text">Готово</p></button>
+        </form>
+    </div>
+</div>
+<div class="pagination">
+    <button class="pagination__button"> < </button>
+    <span class="pagination__number">1</span>...<span class="pagination__number">3</span>
+    <button class="pagination__button"> > </button>
+</div>
+</body>
+</html>

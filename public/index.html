@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script></script>
+    <title>js-таблица</title>
+</head>
+<body>
+<div class="hidden-block">
+    <button class="hidden-block__button hidden-block__button--name" value="name" data-visibility="visibility">Скрыть</button>
+    <button class="hidden-block__button hidden-block__button--lastname" value="lastname" data-visibility="visibility">Скрыть</button>
+    <button class="hidden-block__button hidden-block__button--about" value="about" data-visibility="visibility">Скрыть</button>
+    <button class="hidden-block__button hidden-block__button--eye-color" value="eye-color" data-visibility="visibility">Скрыть</button>
+</div>
+<div class="table-wrapper">
+    <table class="table">
+    <thead>
+        <th class="table__td table__td--header "><div class="th-wrapper"><p class="table__text table__text--header">Имя</p> <button class="sort__button" value="firstName"> < > </button></div></th>
+        <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Фамилия</p> <button class="sort__button" value="lastName"> < > </button></div></th>
+        <th class="table__td table__td--header table__td--about"><div class="th-wrapper"><p class="table__text table__text--header">Описание</p> <button class="sort__button" value="about"> < > </button></div></th>
+        <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Цвет глаз </p><button class="sort__button" value="eyeColor"> < > </button></div></th>
+    </thead>
+    <tbody data-page-number="1">
+
+    </tbody>
+</table>
+</div>
+<script src="./bundle.js"></script>
+</body>
+</html>
