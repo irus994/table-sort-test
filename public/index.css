@@ -178,6 +178,8 @@
 .close-button {
     position: absolute;
     right: 5px;
+    background-color: rgba(115, 186, 241, 0.09);
+    border: 1px solid #7fa5c2;
 }
 
 .hidden-block {
