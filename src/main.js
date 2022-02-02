@@ -5,7 +5,6 @@ const tableTbody = document.querySelector('tbody');
 const sortButtons = document.querySelectorAll('.sort__button');
 const mainContentBlock = document.querySelector('.table-wrapper');
 
-
 // Функции сортировки
 const sortArrayASC = (arr, value) => {
     if (value === 'firstName') {
@@ -46,7 +45,6 @@ const sortArrayDESC = (arr, value) => {
 }
 
 //Функции отрисовки
-
 const renderEditForm = (evt) => {
     const editForm = document.querySelector('.edit-field-wrapper');
     const evtObject = personData.find(person => person.id === evt.target.closest('tr').id);
@@ -87,10 +85,11 @@ const renderEditForm = (evt) => {
                     </ul>
                 </li>
             </ul>
-            <textarea class="edit-field" placeholder="Описание" >${personData.find(person => person.id === evt.target.closest('tr').id).about}</textarea>
+            <textarea class="edit-field" placeholder="Описание" >${evtObject.about}</textarea>
             <button type="submit" class="button"><p class="button__text">Готово</p></button>
         </form>
     </div>`)
+
     const onSubmit = (evt) => {
         const inputName = document.querySelector('#name');
         const inputLastName = document.querySelector('#lastname');
@@ -107,16 +106,16 @@ const renderEditForm = (evt) => {
 
         renderStrings(personData);
     }
+
     const closeForm = () => {
         const editForm = document.querySelector('.edit-field-wrapper');
-        editForm.remove()
+        editForm.remove();
     }
 
     const buttonSubmit = document.querySelector('.button');
-    buttonSubmit.addEventListener('click', onSubmit)
-    const closeButton = document.querySelector('.close-button')
-    closeButton.addEventListener('click', closeForm)
-
+    buttonSubmit.addEventListener('click', onSubmit);
+    const closeButton = document.querySelector('.close-button');
+    closeButton.addEventListener('click', closeForm);
 };
 
 const renderPaginationBlock = (data) => {
@@ -127,28 +126,27 @@ const renderPaginationBlock = (data) => {
     <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
     <button class="pagination__button front"> > </button>
 </div>`)
-    const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front')
-    const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back')
-
+    const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
+    const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back');
 
     const addPaginationNumb = () => {
         if (pageNumber < pageCount) {
             pageNumber = Number(pageNumber) + 1;
             console.log(pageNumber)
-            siteMainElement.querySelector('.pagination').remove()
-            renderStrings(personData.slice(pageNumber * 10 - 10, pageNumber * 10))
+            siteMainElement.querySelector('.pagination').remove();
+            renderStrings(personData.slice(pageNumber * 10 - 10, pageNumber * 10));
             siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
                 <button class="pagination__button back"> < </button>
                 <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
                 <button class="pagination__button front"> > </button>
                 </div>`)
         }
-        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front')
-        buttonPaginationAdd.addEventListener('click', addPaginationNumb)
-        const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back')
-        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb)
+        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
+        buttonPaginationAdd.addEventListener('click', addPaginationNumb);
+        const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back');
+        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
     }
-    buttonPaginationAdd.addEventListener('click', addPaginationNumb)
+    buttonPaginationAdd.addEventListener('click', addPaginationNumb);
 
     const subtractPaginationNumb = () => {
         let pageNumber = tableTbody.getAttribute('data-page-number')
@@ -169,61 +167,58 @@ const renderPaginationBlock = (data) => {
     buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb)
 }
 
-
 const renderStrings = (data) => {
     let pageNumber = tableTbody.getAttribute('data-page-number');
     if (data.length > 10) {
         tableTbody.innerHTML = data.slice(1 - pageNumber, pageNumber * 10).map((person) =>  `
-    <tr id=${person.id}>
-        <td class="table__td"><p class="table__text">${person.name.firstName}</p></td>
-        <td class="table__td"><p class="table__text">${person.name.lastName}</p></td>
-        <td class="table__td table__td--about"><p class="table__text">${person.about}</p></td>
-        <td class="table__td"><div class="eye-color eye-color--${person.eyeColor}"></div></td>
-     </tr>`).join('')
+        <tr id=${person.id}>
+            <td class="table__td"><p class="table__text">${person.name.firstName}</p></td>
+            <td class="table__td"><p class="table__text">${person.name.lastName}</p></td>
+            <td class="table__td table__td--about"><p class="table__text">${person.about}</p></td>
+            <td class="table__td"><div class="eye-color eye-color--${person.eyeColor}"></div></td>
+         </tr>`).join('')
         if (!siteMainElement.contains(document.querySelector('.pagination'))) {
             renderPaginationBlock(personData);
         }
 
     } else {
         tableTbody.innerHTML = data.map((person) => `
-    <tr id=${person.id}>
-        <td class="table__td"><p class="table__text">${person.name.firstName}</p></td>
-        <td class="table__td"><p class="table__text">${person.name.lastName}</p></td>
-        <td class="table__td"><p class="table__text">${person.about}</p></td>
-        <td class="table__td"><div class="eye-color eye-color--${person.eyeColor}"></div></td>
-     </tr>`).join('')
+        <tr id=${person.id}>
+            <td class="table__td"><p class="table__text">${person.name.firstName}</p></td>
+            <td class="table__td"><p class="table__text">${person.name.lastName}</p></td>
+            <td class="table__td"><p class="table__text">${person.about}</p></td>
+            <td class="table__td"><div class="eye-color eye-color--${person.eyeColor}"></div></td>
+         </tr>`).join('')
     }
 
-    tableTbody.querySelectorAll("tr").forEach((tableString) => tableString.addEventListener('click', renderEditForm))
+    tableTbody.querySelectorAll("tr").forEach((tableString) => tableString.addEventListener('click', renderEditForm));
 }
 
+renderStrings(personData);
+
+// Обработчик кнопок сортировки
 const sortString = (evt) => {
     if (evt.target.getAttribute('data-sort-order') === 'asc') {
-        evt.target.setAttribute('data-sort-order','desc' )
+        evt.target.setAttribute('data-sort-order','desc' );
     } else {
-        evt.target.setAttribute('data-sort-order','asc' )
+        evt.target.setAttribute('data-sort-order','asc' );
     }
     console.log(evt.target.getAttribute('data-sort-order'))
     sortButtons.forEach((sortButton) => {
         if (sortButton.value !== evt.target.value) {
-            sortButton.removeAttribute('data-sort-order')
+            sortButton.removeAttribute('data-sort-order');
         }
     })
     if (evt.target.getAttribute('data-sort-order') === 'asc') {
         renderStrings(sortArrayASC(personData, evt.target.value))
     } else if (evt.target.getAttribute('data-sort-order') === 'desc') {
-        renderStrings(sortArrayDESC(personData, evt.target.value))
+        renderStrings(sortArrayDESC(personData, evt.target.value));
     }
 };
-
-renderStrings(personData);
-
-//Обработчики событий
-
 sortButtons.forEach((sortButton) => sortButton.addEventListener('click', sortString))
 
+//Обработчик скрытия/показа колонок
 const hiddenButtons = document.querySelectorAll('.hidden-block__button');
-console.log(hiddenButtons)
 
 const hiddenColumn = (evt) => {
     if (evt.target.getAttribute('data-visibility') === 'visibility') {
@@ -292,7 +287,7 @@ const hiddenColumn = (evt) => {
             evt.target.textContent = 'Скрыть'
             evt.target.setAttribute('data-visibility', 'visibility');
         }
-}
+    }
 }
 
 hiddenButtons.forEach(hiddenButton => hiddenButton.addEventListener('click', hiddenColumn));
