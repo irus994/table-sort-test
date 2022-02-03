@@ -121,7 +121,7 @@ const renderEditForm = (evt) => {
 
 const renderPaginationBlock = (data) => {
     let pageNumber = tableTbody.getAttribute('data-page-number');
-    const pageCount = Math.floor(data.length / 10) - (pageNumber - 1);
+    const pageCount = Math.round(data.length / 10);
     siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
     <button class="pagination__button back"> < </button>
     <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
@@ -135,20 +135,11 @@ const renderPaginationBlock = (data) => {
         if (pageNumber < pageCount) {
             pageNumber = Number(pageNumber) + 1;
             console.log(pageNumber)
-            render(personData)
-            siteMainElement.querySelector('.pagination').remove();
-            tableTbody.setAttribute('data-page-number', pageNumber);
-            siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
-                <button class="pagination__button back"> < </button>
-                <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
-                <button class="pagination__button front"> > </button>
-                </div>`)
-        }
 
-        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
-        buttonPaginationAdd.addEventListener('click', addPaginationNumb);
-        const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back');
-        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
+            tableTbody.setAttribute('data-page-number', pageNumber);
+            siteMainElement.querySelector('.pagination').remove();
+            render(personData);
+        }
     }
     buttonPaginationAdd.addEventListener('click', addPaginationNumb);
 
@@ -156,19 +147,11 @@ const renderPaginationBlock = (data) => {
         let pageNumber = tableTbody.getAttribute('data-page-number');
         if (pageNumber > 1) {
             pageNumber = Number(pageNumber) - 1;
-            render(personData)
-            siteMainElement.querySelector('.pagination').remove();
+            console.log(pageNumber)
             tableTbody.setAttribute('data-page-number', pageNumber);
-            siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
-                <button class="pagination__button back"> < </button>
-                <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
-                <button class="pagination__button front"> > </button>
-                </div>`)
+            siteMainElement.querySelector('.pagination').remove();
+            render(personData);
         }
-        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
-        buttonPaginationAdd.addEventListener('click', addPaginationNumb);
-        const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back')
-        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
     }
     buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
 }
@@ -199,9 +182,10 @@ const renderStrings = (data, number) => {
     tableTbody.querySelectorAll("tr").forEach((tableString) => tableString.addEventListener('click', renderEditForm));
 }
 
-// renderStrings(personData);
 const render = (arr) => {
     let pageNumber = tableTbody.getAttribute('data-page-number');
+    const hiddenColumn = document.querySelectorAll('.visually-hidden');
+    console.log(hiddenColumn)
     const nameColumn = document.querySelector('[data-sort-order]').value;
     const sortOrder = document.querySelector('[data-sort-order]').getAttribute('data-sort-order');
     if (sortOrder === 'asc') {
