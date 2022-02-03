@@ -191,18 +191,12 @@
     box-sizing: border-box;
 
 }
-.hidden-block__button {
-    background-color: rgba(115, 186, 241, 0.09);
-    margin: 0 30px;
-    font-family: 'Raleway', sans-serif;
-    border-radius: 8px;
-    border: none;
-    height: 20px;
-    padding: 5px;
+.hidden-block__input {
+    margin: 0 20px;
 }
 
-.hidden-block__text {
-    margin: 0;
+.hidden-block__label {
+    font-family: 'Raleway', sans-serif;
 }
 
 .visually-hidden {
@@ -218,3 +212,4 @@
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
+

@@ -12,18 +12,19 @@
 </head>
 <body>
 <div class="hidden-block">
-    <button class="hidden-block__button hidden-block__button--name" value="name" data-visibility="visibility">Скрыть</button>
-    <button class="hidden-block__button hidden-block__button--lastname" value="lastname" data-visibility="visibility">Скрыть</button>
-    <button class="hidden-block__button hidden-block__button--about" value="about" data-visibility="visibility">Скрыть</button>
-    <button class="hidden-block__button hidden-block__button--eye-color" value="eye-color" data-visibility="visibility">Скрыть</button>
+    <input type="checkbox" checked class="hidden-block__input" value="name" id="name-checkbox" data-visibility="visibility">
+    <label class="hidden-block__label" for="name-checkbox">Показать</label>
+    <input type="checkbox" checked class="hidden-block__input" value="lastname" id="lastname-checkbox" data-visibility="visibility">
+    <label class="hidden-block__label" for="lastname-checkbox">Показать</label>
+    <input type="checkbox" checked class="hidden-block__input" value="about" id="about-checkbox" data-visibility="visibility">
+    <label class="hidden-block__label" for="about-checkbox">Показать</label>
+    <input type="checkbox" checked class="hidden-block__input" value="eye-color" id="eye-color-checkbox" data-visibility="visibility">
+    <label class="hidden-block__label" for="eye-color-checkbox">Показать</label>
 </div>
 <div class="table-wrapper">
     <table class="table">
-    <thead>
-        <th class="table__td table__td--header "><div class="th-wrapper"><p class="table__text table__text--header">Имя</p> <button class="sort__button" value="firstName" data-sort-order="asc"> < > </button></div></th>
-        <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Фамилия</p> <button class="sort__button" value="lastName"> < > </button></div></th>
-        <th class="table__td table__td--header table__td--about"><div class="th-wrapper"><p class="table__text table__text--header">Описание</p> <button class="sort__button" value="about"> < > </button></div></th>
-        <th class="table__td table__td--header"><div class="th-wrapper"><p class="table__text table__text--header">Цвет глаз </p><button class="sort__button" value="eyeColor"> < > </button></div></th>
+    <thead data-sort-order="asc" data-sort-column="firstName">
+
     </thead>
     <tbody data-page-number="1">
 
