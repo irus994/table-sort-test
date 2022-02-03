@@ -104,7 +104,8 @@ const renderEditForm = (evt) => {
         evtObject.about = inputAbout.value;
         evtObject.eyeColor = checkedColor.value;
 
-        renderStrings(personData);
+        // renderStrings(personData);
+        render(personData);
     }
 
     const closeForm = () => {
@@ -130,17 +131,20 @@ const renderPaginationBlock = (data) => {
     const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back');
 
     const addPaginationNumb = () => {
+        let pageNumber = tableTbody.getAttribute('data-page-number');
         if (pageNumber < pageCount) {
             pageNumber = Number(pageNumber) + 1;
             console.log(pageNumber)
+            render(personData)
             siteMainElement.querySelector('.pagination').remove();
-            renderStrings(personData.slice(pageNumber * 10 - 10, pageNumber * 10));
+            tableTbody.setAttribute('data-page-number', pageNumber);
             siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
                 <button class="pagination__button back"> < </button>
                 <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
                 <button class="pagination__button front"> > </button>
                 </div>`)
         }
+
         const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
         buttonPaginationAdd.addEventListener('click', addPaginationNumb);
         const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back');
@@ -149,28 +153,30 @@ const renderPaginationBlock = (data) => {
     buttonPaginationAdd.addEventListener('click', addPaginationNumb);
 
     const subtractPaginationNumb = () => {
-        let pageNumber = tableTbody.getAttribute('data-page-number')
-        // if (pageNumber > 1) {
+        let pageNumber = tableTbody.getAttribute('data-page-number');
+        if (pageNumber > 1) {
             pageNumber = Number(pageNumber) - 1;
-            siteMainElement.querySelector('.pagination').remove()
+            render(personData)
+            siteMainElement.querySelector('.pagination').remove();
+            tableTbody.setAttribute('data-page-number', pageNumber);
             siteMainElement.insertAdjacentHTML('beforeend', `<div class="pagination">
                 <button class="pagination__button back"> < </button>
                 <span class="pagination__number">${pageNumber}</span>...<span class="pagination__number">${pageCount}</span>
                 <button class="pagination__button front"> > </button>
                 </div>`)
-        // }
-        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front')
-        buttonPaginationAdd.addEventListener('click', addPaginationNumb)
+        }
+        const buttonPaginationAdd = siteMainElement.querySelector('.pagination__button.front');
+        buttonPaginationAdd.addEventListener('click', addPaginationNumb);
         const buttonPaginationSubtract = siteMainElement.querySelector('.pagination__button.back')
-        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb)
+        buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
     }
-    buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb)
+    buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
 }
 
-const renderStrings = (data) => {
-    let pageNumber = tableTbody.getAttribute('data-page-number');
+const renderStrings = (data, number) => {
+    const step = 10;
     if (data.length > 10) {
-        tableTbody.innerHTML = data.slice(1 - pageNumber, pageNumber * 10).map((person) =>  `
+        tableTbody.innerHTML = data.slice(number * step - step, number * step).map((person) =>  `
         <tr id=${person.id}>
             <td class="table__td"><p class="table__text">${person.name.firstName}</p></td>
             <td class="table__td"><p class="table__text">${person.name.lastName}</p></td>
@@ -180,7 +186,6 @@ const renderStrings = (data) => {
         if (!siteMainElement.contains(document.querySelector('.pagination'))) {
             renderPaginationBlock(personData);
         }
-
     } else {
         tableTbody.innerHTML = data.map((person) => `
         <tr id=${person.id}>
@@ -194,7 +199,23 @@ const renderStrings = (data) => {
     tableTbody.querySelectorAll("tr").forEach((tableString) => tableString.addEventListener('click', renderEditForm));
 }
 
-renderStrings(personData);
+// renderStrings(personData);
+const render = (arr) => {
+    let pageNumber = tableTbody.getAttribute('data-page-number');
+    const nameColumn = document.querySelector('[data-sort-order]').value;
+    const sortOrder = document.querySelector('[data-sort-order]').getAttribute('data-sort-order');
+    if (sortOrder === 'asc') {
+        const sortArray = sortArrayASC(arr, nameColumn);
+        renderStrings(sortArray, pageNumber);
+    }
+    if (sortOrder === 'desc') {
+        const sortArray = sortArrayDESC(arr, nameColumn);
+        renderStrings(sortArray, pageNumber);
+    }
+    renderStrings(arr, pageNumber);
+}
+
+render(personData);
 
 // Обработчик кнопок сортировки
 const sortString = (evt) => {
@@ -209,11 +230,12 @@ const sortString = (evt) => {
             sortButton.removeAttribute('data-sort-order');
         }
     })
-    if (evt.target.getAttribute('data-sort-order') === 'asc') {
-        renderStrings(sortArrayASC(personData, evt.target.value))
-    } else if (evt.target.getAttribute('data-sort-order') === 'desc') {
-        renderStrings(sortArrayDESC(personData, evt.target.value));
-    }
+    // if (evt.target.getAttribute('data-sort-order') === 'asc') {
+    //     renderStrings(sortArrayASC(personData, evt.target.value))
+    // } else if (evt.target.getAttribute('data-sort-order') === 'desc') {
+    //     renderStrings(sortArrayDESC(personData, evt.target.value));
+    // }
+    render(personData);
 };
 sortButtons.forEach((sortButton) => sortButton.addEventListener('click', sortString))
 
@@ -291,7 +313,3 @@ const hiddenColumn = (evt) => {
 }
 
 hiddenButtons.forEach(hiddenButton => hiddenButton.addEventListener('click', hiddenColumn));
-
-
-
-
