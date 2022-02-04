@@ -164,7 +164,7 @@ const renderPaginationBlock = (data) => {
     buttonPaginationSubtract.addEventListener('click', subtractPaginationNumb);
 }
 
-const renderStrings = (data, number, checkedColumns) => {
+const renderRows = (data, number, checkedColumns) => {
     const step = 10;
     if (data.length > 10) {
         tableTbody.innerHTML = data.slice(number * step - step, number * step).map((person) =>  `
@@ -210,11 +210,11 @@ const render = (arr) => {
 
     if (sortOrder === 'asc') {
         const sortArray = sortArrayASC(arr, nameColumn);
-        renderStrings(sortArray, pageNumber, checkedColumns);
+        renderRows(sortArray, pageNumber, checkedColumns);
     }
     if (sortOrder === 'desc') {
         const sortArray = sortArrayDESC(arr, nameColumn);
-        renderStrings(sortArray, pageNumber, checkedColumns);
+        renderRows(sortArray, pageNumber, checkedColumns);
     }
 }
 render(personData);
